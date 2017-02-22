@@ -13,49 +13,53 @@ public class MyArrayListTest {
 
     @Before
     public void setUp(){
-        mal = new MyArrayList<String>();
-        mal.add(11, "eleven");
+        mal = new MyArrayList<>();
+        mal.add(10, "10th index");
     }
 
     @Test
-    //add object
-    public void addObjectToArrayList(){
-        mal.add("stuff");
-        String expected = "stuff";
-        String actual = mal.get(0);
-        assertEquals("stuff will return", expected, actual);
+    //one parameter add end of list
+    public void addOneParameterTest(){
+        mal.add("11th index");
+        String expected = "11th index";
+        String actual = mal.get(11);
+        assertEquals("11th will return", expected, actual);
+
     }
 
     @Test
     //add object to specific element
     public void addObjectToSpecificElementTest(){
-        mal.add(1,"fist index");
+        mal.add(1,"first index");
         String expected = "first index";
         String actual = mal.get(1);
         assertEquals("first index will return", expected, actual);
     }
 
     @Test
+    //get item at specific index
     public void getTest(){
-        int expectedArraySize = 11;
-        int actualArraySize = mal.getArraySize();
-        assertEquals(expectedArraySize,actualArraySize);
+        String expected = "10th index";
+        String actual = mal.get(10);
+        assertEquals("10th index will return", expected, actual);
     }
 
     @Test
+    //remove item from specified index
     public void removeTest(){
-        mal.remove(11);
+        mal.remove(10);
         String expected = null;
-        String actual = mal.get(11);
+        String actual = mal.get(10);
         assertEquals("null will return", expected, actual);
     }
 
     @Test
+    //replaces element with new requested
     public void setTest(){
-        mal.set(9, "ninth index");
-        String expected = "ninth index";
-        String actual = mal.get(9);
-        assertEquals("ninth index returns", expected, actual);
+        mal.set(10, "stuff and things");
+        String expected = "stuff and things";
+        String actual = mal.get(10);
+        assertEquals("new 10th index returns", expected, actual);
     }
 
     @Test
@@ -67,15 +71,43 @@ public class MyArrayListTest {
     }
 
     @Test
+    //is empty true
     public void isEmptyTest(){
-        assertFalse(mal.isEmpty());
         mal.clear();
-        assertTrue(mal.isEmpty());
+        boolean expected = true;
+        boolean actual = mal.isEmpty();
+        assertEquals("true will return", expected, actual);
     }
 
     @Test
+    //is empty false
+    public void isEmptyFalseTest(){
+        boolean expected = false;
+        boolean actual = mal.isEmpty();
+        assertEquals("false returns array still contains elements", expected, actual);
+    }
+
+    @Test
+    //contains true
     public void containsTest(){
-        assertTrue(mal.contains("eleven"));
+        boolean expected = true;
+        boolean actual = mal.contains("10th index");
+        assertEquals("true will return does contain 10th elemetn", expected, actual);
+    }
+
+    @Test
+    //contains false
+    public void containsFalseTest(){
+        boolean expected = false;
+        boolean actual = mal.contains("9th index");
+        assertEquals("false does not contain 9th elemetn", expected, actual);
+    }
+
+    @Test
+    public void indexOfTest(){
+        int expected = 1;
+        int actual = mal.indexOf("11th will return");
+        assertEquals("1 will return contains element", expected, actual);
     }
 
 
