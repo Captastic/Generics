@@ -54,6 +54,14 @@ public class MyArrayListTest {
     }
 
     @Test
+    //remove first instance
+    public void removeFirstInstance(){
+        boolean expected = true;
+        boolean actual = mal.remove("10th index");
+        assertEquals("returns false", expected, actual);
+    }
+
+    @Test
     //replaces element with new requested
     public void setTest(){
         mal.set(10, "stuff and things");
@@ -103,12 +111,14 @@ public class MyArrayListTest {
         assertEquals("false does not contain 9th elemetn", expected, actual);
     }
 
+    /*
     @Test
     public void indexOfTest(){
         int expected = 1;
         int actual = mal.indexOf("11th will return");
         assertEquals("1 will return contains element", expected, actual);
     }
+    */
 
 
 

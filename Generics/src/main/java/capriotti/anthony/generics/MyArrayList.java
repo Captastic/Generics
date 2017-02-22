@@ -20,10 +20,6 @@ public class MyArrayList<T> {
         arraySize = arraySize;
     }
 
-  /*  public int getArraySize() {
-        return arraySize;
-    } */
-
     public boolean add(T typeObject) {
         resize(myArray.length + 1);
         myArray[arraySize] = typeObject;
@@ -31,6 +27,7 @@ public class MyArrayList<T> {
         return true;
     }
 
+    //copyOfRange arrays javadoc
     public void add(int index, T typeObject) {
         if(index > arraySize){
             resize(index);
@@ -38,13 +35,18 @@ public class MyArrayList<T> {
             myArray[index] = typeObject;
         }
         else {
-            arraySize++;
             T[] newArray = Arrays.copyOfRange(myArray, 0,myArray.length-1);
             myArray[index] = typeObject;
             for(int i = index; i < newArray.length;i++){
                 myArray[i+1] = newArray[i];
             }
+        }
+    }
 
+    //resizez array-javadoc copyOf
+    private void resize(int index) {
+        if (myArray.length < index) {
+            myArray = Arrays.copyOf(myArray, index * 2);
         }
     }
 
@@ -53,19 +55,21 @@ public class MyArrayList<T> {
     }
 
     public void remove(int index) {
-        T[] newArray = Arrays.copyOfRange(myArray, 0,myArray.length-1);
-        for(int i = index; i < newArray.length-1;i++){
-            myArray[i] = newArray[i+1];
+        for(int i = index; i < myArray.length-1;i++){
+            myArray[i] = myArray[i-1];
         }
         arraySize--;
 
     }
 
-    //resizez array-javadoc
-    private void resize(int index) {
-        if (myArray.length < index) {
-            myArray = Arrays.copyOf(myArray, index * 2);
+    //remove first instance
+    public boolean remove(T object){
+        for (int i = 0; i < myArray.length; i++){
+            if (object.equals(myArray[i]))
+                remove(i);
+            return true;
         }
+        return false;
     }
 
     //replaces element with new requested
